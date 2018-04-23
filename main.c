@@ -31,21 +31,27 @@ int main(void)
 //파일 1의 정보를 가져오는 함수 작성
 void filestat1(void)
 {
+    char* file1 = "text1";
+    stat(file1,&stat1);
 }
 
 //파일 2의 정보를 가져오는 함수 작성
 void filestat2(void)
 {
+    char* file2 = "text2";
+    stat(file2,&stat2);
 }
 
 //파일 1의 시간 정보를 가져오는 함수 작성
 void filetime1(void)
 {
+    time1 = localtime(&stat1.st_mtime);
 }
 
 //파일 2의 시간 정보를 가져오는 함수 작성
 void filetime2(void)
 {
+    time2 = localtime(&stat2.st_mtime);
 }
 
 //두 개의 파일 크기를 비교하는 함수 작성
@@ -68,17 +74,11 @@ void datecmp(void)
 	int m1, d1;
 	int m2, d2;
 
-	stat(file1, &stat1);
-	stat(file2, &stat2);
-
-
-	time1 = localtime(&stat1.st_mtime);
 	m1 = time1->tm_mon;
 	d1 = time1->tm_mday;
-	time2 = localtime(&stat2.st_mtime);
+
 	m2 = time2->tm_mon;
 	d2 = time2->tm_mday;
-
 
 	if(d1 < d2)
 		result = 1;
@@ -88,8 +88,6 @@ void datecmp(void)
 		result = 1;
 	if(m1 > m2)
 		result = 2;
-
-
 
 	if(result == 0)
 		printf("same time\n");
@@ -109,18 +107,11 @@ void timecmp(void)
 	int h1, m1;
 	int h2, m2;
 
-
-	stat(file1, &stat1);
-	stat(file2, &stat2);
-
-
-	time1 = localtime(&stat1.st_mtime);
 	h1 = time1->tm_hour;
 	m1 = time1->tm_min;
-	time2 = localtime(&stat2.st_mtime);
+
 	h2 = time2->tm_hour;
 	m2 = time2->tm_min;
-
 
 	if(m1 < m2)
 		result = 1;
@@ -130,8 +121,6 @@ void timecmp(void)
 		result = 1;
 	if(h1 > h2)
 		result = 2;
-
-
 
 	if(result == 0)
 		printf("same time\n");
