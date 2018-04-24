@@ -7,6 +7,8 @@
 
 struct stat stat1, stat2;
 struct tm *time1, *time2;
+int mon1, mon2, d1, d2;
+int h1, h2, min1, min2;
 
 void filestat1(void);
 void filestat2(void);
@@ -56,12 +58,20 @@ void filestat2(void)
 void filetime1(void)
 {
     time1 = localtime(&stat1.st_mtime);
+    mon1 = time1->tm_mon;
+    d1 = time1->tm_mday;
+    h1 = time1->tm_hour;
+    min1 = time1->tm_min;
 }
 
 //파일 2의 시간 정보를 가져오는 함수 작성
 void filetime2(void)
 {
     time2 = localtime(&stat2.st_mtime);
+    mon2 = time2->tm_mon;
+    d2 = time2->tm_mday;
+    h2 = time2->tm_hour;
+    min2 = time2->tm_min;
 }
 
 //두 개의 파일 크기를 비교하는 함수 작성
@@ -80,8 +90,6 @@ void sizecmp(void)
 		else
 			printf("text2 is bigger\n");
 	}
-	printf("\n");
-
 }
 
 //두 개의 파일 블락 수를 비교하는 함수 작성
@@ -100,30 +108,20 @@ void blockcmp(void)
 		else
 			printf("text2 is bigger\n");
 	}
-	printf("\n");
-
 }
 
 //두 개의 파일 수정 날짜를 비교하는 함수 작성
 void datecmp(void)
 {
 	int result = 0;
-	int m1, d1;
-	int m2, d2;
-
-	m1 = time1->tm_mon;
-	d1 = time1->tm_mday;
-
-	m2 = time2->tm_mon;
-	d2 = time2->tm_mday;
 
 	if(d1 < d2)
 		result = 1;
 	if(d1 > d2)
 		result = 2;
-	if(m1 < m2)
+	if(mon1 < mon2)
 		result = 1;
-	if(m1 > m2)
+	if(mon1 > mon2)
 		result = 2;
 
 	if(result == 0)
@@ -138,18 +136,9 @@ void datecmp(void)
 void timecmp(void)
 {
 	int result = 0;
-	int h1, m1;
-	int h2, m2;
-
-	h1 = time1->tm_hour;
-	m1 = time1->tm_min;
-
-	h2 = time2->tm_hour;
-	m2 = time2->tm_min;
-
-	if(m1 < m2)
+	if(min1 < min2)
 		result = 1;
-	if(m1 > m2)
+	if(min1 > min2)
 		result = 2;
 	if(h1 < h2)
 		result = 1;
