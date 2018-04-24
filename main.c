@@ -57,14 +57,8 @@ void filetime2(void)
 //두 개의 파일 크기를 비교하는 함수 작성
 void sizecmp(void)
 {
-	char *file1 = "text1";
-	char *file2 = "text2";
-
-	stat(file1, &stat1);
-	stat(file2, &stat2);
-
-	int file1_size = 0;
-	int file2_size = 0;
+	int file1_size = stat1.st_size;
+	int file2_size = stat2.st_size;
 
 	// stat.st_size text1 & text2
 	if (0 > file1)
@@ -93,14 +87,8 @@ void sizecmp(void)
 //두 개의 파일 블락 수를 비교하는 함수 작성
 void blockcmp(void)
 {
-	char *file1 = "text1";
-	char *file2 = "text2";
-
-	stat(file1, &stat1);
-	stat(file2, &stat2);
-
-	int file1_size = 0;
-	int file2_size = 0;
+	int file1_blk_amount = stat1.st_blksize;
+	int file2_blk_amount = stat2.st_blksize;
 
 	// stat.st_blocksize text1 & text2
 	if (0 > file1)
@@ -113,11 +101,11 @@ void blockcmp(void)
 		file2_size = stat2.st_blksize;
 
 	// compare with block size text1 & text2
-	if (file1_size == file2_size)
+	if (file1_blk_amount == file2_blk_amount)
 		printf("sizes are equal\n");
 	else
 	{
-		if (file1_size > file2_size)
+		if (file1_blk_amount > file2_blk_amount)
 			printf("text1 is bigger\n");
 		else
 			printf("text2 is bigger\n");
@@ -129,9 +117,6 @@ void blockcmp(void)
 //두 개의 파일 수정 날짜를 비교하는 함수 작성
 void datecmp(void)
 {
-	char* file1 = "text1";
-	char* file2 = "text2";
-
 	int result = 0;
 	int m1, d1;
 	int m2, d2;
@@ -162,9 +147,6 @@ void datecmp(void)
 //두 개의 파일 수정 시간을 비교하는 함수 작성
 void timecmp(void)
 {
-	char* file1 = "text1";
-	char* file2 = "text2";
-
 	int result = 0;
 	int h1, m1;
 	int h2, m2;
