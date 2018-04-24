@@ -35,6 +35,7 @@ int main(void)
 void filestat1(void)
 {
 	printf("\n");
+	printf("\n");
     char* file1 = "text1";
     if(stat(file1,&stat1) < 0)
     {
