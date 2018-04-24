@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <time.h>
+#include <stdlib.h>
 
 struct stat stat1, stat2;
 struct tm *time1, *time2;
@@ -32,8 +33,7 @@ int main(void)
 void filestat1(void)
 {
     char* file1 = "text1";
-    stat(file1,&stat1);
-    if(stat1 < 0)
+    if(stat(file1,&stat1) < 0)
     {
 	printf("%s is not exist!\n",file1);
 	exit(0);
@@ -44,8 +44,7 @@ void filestat1(void)
 void filestat2(void)
 {
     char* file2 = "text2";
-    stat(file2,&stat2);
-    if(stat2 < 0)
+    if(stat(file2,&stat2) <0)
     {
 	printf("%s is not exist\n",file2);
 	exit(0);
