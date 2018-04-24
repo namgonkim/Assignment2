@@ -33,6 +33,11 @@ void filestat1(void)
 {
     char* file1 = "text1";
     stat(file1,&stat1);
+    if(stat1 < 0)
+    {
+	printf("%s is not exist!\n",file1);
+	exit(0);
+    }
 }
 
 //파일 2의 정보를 가져오는 함수 작성
@@ -40,7 +45,13 @@ void filestat2(void)
 {
     char* file2 = "text2";
     stat(file2,&stat2);
+    if(stat2 < 0)
+    {
+	printf("%s is not exist\n",file2);
+	exit(0);
+    }
 }
+
 
 //파일 1의 시간 정보를 가져오는 함수 작성
 void filetime1(void)
@@ -59,16 +70,6 @@ void sizecmp(void)
 {
 	int file1_size = stat1.st_size;
 	int file2_size = stat2.st_size;
-
-	// stat.st_size text1 & text2
-	if (0 > file1)
-		printf("Text1 is not exist.\n");
-	else
-		file1_size = stat1.st_size;
-	if (0 > file2)
-		printf("Text2 is not exist.\n");
-	else
-		file2_size = stat2.st_size;
 
 	// compare with size text1 & text2
 	if (file1_size == file2_size)
@@ -89,16 +90,6 @@ void blockcmp(void)
 {
 	int file1_blk_amount = stat1.st_blksize;
 	int file2_blk_amount = stat2.st_blksize;
-
-	// stat.st_blocksize text1 & text2
-	if (0 > file1)
-		printf("Text1 is not exist.\n");
-	else
-		file1_size = stat1.st_blksize;
-	if (0 > file2)
-		printf("Text2 is not exist.\n");
-	else
-		file2_size = stat2.st_blksize;
 
 	// compare with block size text1 & text2
 	if (file1_blk_amount == file2_blk_amount)
