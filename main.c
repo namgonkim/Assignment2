@@ -34,6 +34,7 @@ int main(void)
 //파일 1의 정보를 가져오는 함수 작성
 void filestat1(void)
 {
+	printf("\n");
     char* file1 = "text1";
     if(stat(file1,&stat1) < 0)
     {
