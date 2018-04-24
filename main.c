@@ -115,7 +115,6 @@ void datecmp(void)
 {
 	int result = 0;
 
-
 	if(d1 < d2)
 		result = 1;
 	if(d1 > d2)
@@ -137,7 +136,6 @@ void datecmp(void)
 void timecmp(void)
 {
 	int result = 0;
-
 	if(min1 < min2)
 		result = 1;
 	if(min1 > min2)
